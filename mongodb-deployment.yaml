@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  namespace: fitness-app
 spec:
   replicas: 1
   selector:
@@ -17,17 +18,12 @@ spec:
         image: mongo:7-jammy
         ports:
         - containerPort: 27017
-        volumeMounts:
-        - name: mongodb-storage
-          mountPath: /data/db
-      volumes:
-      - name: mongodb-storage
-        emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mongodb-service
+  namspace: fitness-app
 spec:
   selector:
     app: mongodb
