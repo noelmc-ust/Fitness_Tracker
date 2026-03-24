@@ -17,13 +17,12 @@ kind: Secret
 metadata:
   name: fit-secret
   namespace: fitness-app
-data:
+
+stringData:
   DD_TRACE_AGENT_PORT: "8126"
   DD_ENV: "production"
   DD_SERVICE: "fitness-tracker-app"
   DD_VERSION: "1.0.0"
-
-    
 
 ---
 
@@ -98,22 +97,22 @@ spec:
             - name: DD_TRACE_AGENT_PORT
               valueFrom:
                 secretKeyRef:
-                  name: secret
+                  name: fit-secret
                   key: DD_TRACE_AGENT_PORT
             - name: DD_ENV
               valueFrom:
                 secretKeyRef:
-                  name: secret
+                  name: fit-secret
                   key: DD_ENV
             - name: DD_SERVICE
               valueFrom:
                 secretKeyRef:
-                  name: secret
+                  name: fit-secret
                   key: DD_SERVICE
             - name: DD_VERSION
               valueFrom:
                 secretKeyRef:
-                  name: secret
+                  name: fit-secret
                   key: DD_VERSION
 ---
 
