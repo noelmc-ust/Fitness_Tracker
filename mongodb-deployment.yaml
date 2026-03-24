@@ -28,10 +28,10 @@ spec:
             mountPath: /data/db
         resources:
           requests:
-            memory: "256Mi"
+            memory: "128i"
             cpu: "100m"
           limits:
-            memory: "512Mi"
+            memory: "130Mi"
             cpu: "200m"
       volumes:
         - name: fit-volume
