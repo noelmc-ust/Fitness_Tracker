@@ -35,8 +35,9 @@ spec:
             cpu: "200m"
       volumes:
         - name: fit-volume
-          emptyDir: 
-            sizeLimit: 512Mi
+          hostPath: 
+            path: /ust
+            type: Directory
           
 ---
 apiVersion: v1
