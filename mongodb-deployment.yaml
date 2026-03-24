@@ -13,13 +13,6 @@ spec:
     rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
-  resources:
-    requests:
-      memory: "256Mi"
-      cpu: "100m"
-    limits:
-      memory: "512Mi"
-      cpu: "200m"
   template:
     metadata:
       labels:
@@ -33,6 +26,13 @@ spec:
         volumeMounts:
           - name: fit-volume
             mountPath: /data/db
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"
       volumes:
         - name: fit-volume
           emptyDir: 
