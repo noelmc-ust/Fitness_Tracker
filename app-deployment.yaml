@@ -10,6 +10,20 @@ data:
   NODE_ENV: "production"
 
 
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: fit-secret
+data:
+  DD_TRACE_AGENT_PORT: "8126"
+  DD_ENV: "production"
+  DD_SERVICE: "fitness-tracker-app"
+  DD_VERSION: "1.0.0"
+
+    
+
 ---
 
 apiVersion: gateway.networking.k8s.io/v1beta1
@@ -81,13 +95,25 @@ spec:
                 fieldRef:
                   fieldPath: status.hostIP
             - name: DD_TRACE_AGENT_PORT
-              value: "8126"
+              valueFrom:
+                secretMapKeyRef:
+                  name: secret
+                  key: DD_TRACE_AGENT_PORT
             - name: DD_ENV
-              value: "production"
+              valueFrom:
+                secretMapKeyRef:
+                  name: secret
+                  key: DD_ENV
             - name: DD_SERVICE
-              value: "fitness-tracker-app"
+              valueFrom:
+                secretMapKeyRef:
+                  name: secret
+                  key: DD_SERVICE
             - name: DD_VERSION
-              value: "1.0.0"
+              valueFrom:
+                secretMapKeyRef:
+                  name: secret
+                  key: DD_VERSION
 ---
 
 apiVersion: v1
