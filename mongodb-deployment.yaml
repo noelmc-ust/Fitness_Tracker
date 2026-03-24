@@ -4,10 +4,22 @@ metadata:
   name: mongodb
   namespace: fitness-app
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: mongodb
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "200m"
   template:
     metadata:
       labels:
@@ -18,6 +30,14 @@ spec:
         image: mongo:7-jammy
         ports:
         - containerPort: 27017
+        volumeMounts:
+          - name: fit-volume
+            mountPath: /data/db
+      volumes:
+        - name: fit-volume
+          emptyDir: 
+            sizeLimit: 512Mi
+          
 ---
 apiVersion: v1
 kind: Service
