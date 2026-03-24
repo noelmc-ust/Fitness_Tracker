@@ -28,7 +28,7 @@ spec:
             mountPath: /data/db
         resources:
           requests:
-            memory: "128i"
+            memory: "128Mi"
             cpu: "100m"
           limits:
             memory: "130Mi"
