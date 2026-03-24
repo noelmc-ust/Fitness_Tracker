@@ -4,7 +4,7 @@ metadata:
   name: mongodb
   namespace: fitness-app
 spec:
-  replicas: 4
+  replicas: 1
   selector:
     matchLabels:
       app: mongodb
@@ -37,7 +37,7 @@ spec:
         - name: fit-volume
           hostPath: 
             path: /ust
-            type: Directory
+            type: DirectoryOrCreate
           
 ---
 apiVersion: v1
