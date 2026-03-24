@@ -97,22 +97,22 @@ spec:
                   fieldPath: status.hostIP
             - name: DD_TRACE_AGENT_PORT
               valueFrom:
-                secretMapKeyRef:
+                secretKeyRef:
                   name: secret
                   key: DD_TRACE_AGENT_PORT
             - name: DD_ENV
               valueFrom:
-                secretMapKeyRef:
+                secretKeyRef:
                   name: secret
                   key: DD_ENV
             - name: DD_SERVICE
               valueFrom:
-                secretMapKeyRef:
+                secretKeyRef:
                   name: secret
                   key: DD_SERVICE
             - name: DD_VERSION
               valueFrom:
-                secretMapKeyRef:
+                secretKeyRef:
                   name: secret
                   key: DD_VERSION
 ---
