@@ -35,9 +35,8 @@ spec:
             cpu: "200m"
       volumes:
         - name: fit-volume
-          hostPath: 
-            path: /ust
-            type: DirectoryOrCreate
+          PersistentVolumeClaim:
+            claimName: mongo-pvc
           
 ---
 apiVersion: v1
