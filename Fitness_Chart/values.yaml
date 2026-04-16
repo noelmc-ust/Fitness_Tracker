@@ -1,7 +1,7 @@
 # Global settings
 namespace: fitness-app
 app:
-  replicaCount: 4
+  replicaCount: 2
   image:
     repository: nmc9812/fitness-app
     tag: v1.1.1
