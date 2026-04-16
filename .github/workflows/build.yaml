@@ -35,6 +35,17 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+    
+      - name: Install Dependencies for Scan
+        run: |
+          cd server
+          npm install
+
       - name: Snyk Security Scan
         uses: snyk/actions/node@master
         env:
