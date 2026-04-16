@@ -63,7 +63,7 @@ app.use((req, res, next) => {
 });
 
 // Middleware: Serve all static files (HTML, CSS, JS, images, etc.) from the "public" folder
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Log ALL /api/auth requests for debugging
 app.use('/api/auth', (req, res, next) => {
@@ -85,7 +85,7 @@ app.use('/api/auth', authRoutes);
 
 // Route: Redirect root URL ("/") to the main homepage (index.html in public/pages)
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'pages', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
 });
 
 // Set server port and start listening with environment variable support
@@ -94,7 +94,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'pages', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'));
 });
 
 app.listen(PORT, HOST, () => {

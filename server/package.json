@@ -9,11 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "brace-expansion": "^5.0.5",
     "dd-trace": "^5.67.0",
     "dotenv": "^16.3.1",
     "express": "^5.1.0",
-    "mongoose": "^8.17.0"
+    "minimatch": "^10.2.5",
+    "mongoose": "^8.17.0",
+    "picomatch": "^4.0.4"
   },
-  "devDependencies": {},
   "description": ""
 }

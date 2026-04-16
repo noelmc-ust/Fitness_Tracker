@@ -40,7 +40,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --severity-threshold=critical
+          args: --severity-threshold=critical --file=server/package.json
 
       - name: Build Local Image for Scanning
         run: docker build -t local-scan:${{ github.sha }} .
@@ -95,8 +95,8 @@ jobs:
         run: |
           yq -i '.app.image.tag = "${{ env.FINAL_TAG }}"' ${{ env.CHART_PATH }}/values.yaml
 
-          git config user.name "Fitness-DevOps-Bot"
-          git config user.email "devops@fitness-app.com"
+          git config user.name "Fitness-Devops"
+          git config user.email "noelmathews123@gmail.com"
           git add ${{ env.CHART_PATH }}/values.yaml
           git commit -m "chore: release ${{ env.FINAL_TAG }} [skip ci]"
           git push origin master
