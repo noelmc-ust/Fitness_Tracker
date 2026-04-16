@@ -1,12 +1,10 @@
 # Global settings
 namespace: fitness-app
-
-
 app:
   replicaCount: 4
   image:
     repository: nmc9812/fitness-app
-    tag: latest
+    tag: v1.1.1
     pullPolicy: Always
   service:
     type: NodePort
@@ -19,8 +17,6 @@ app:
     limits:
       cpu: 200m
       memory: 512Mi
-
-
 mongodb:
   replicaCount: 1
   image: mongo:7-jammy
@@ -32,7 +28,5 @@ mongodb:
     limits:
       cpu: 200m
       memory: 512Mi
-
-
 referenceGrant:
   fromNamespace: noel-ns
