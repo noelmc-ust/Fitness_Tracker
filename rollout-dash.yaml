@@ -49,7 +49,6 @@ metadata:
   namespace: argo-rollouts
 
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -67,6 +66,10 @@ rules:
     - pods
     - services
     - namespaces
+  verbs: ["get", "list", "watch"]
+
+- apiGroups: ["apps"]
+  resources:
     - replicasets
   verbs: ["get", "list", "watch"]
 
