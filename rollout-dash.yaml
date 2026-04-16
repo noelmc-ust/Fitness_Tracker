@@ -13,6 +13,7 @@ spec:
       labels:
         app: rollouts-dashboard
     spec:
+      serviceAccountName: rollouts-dashboard-sa
       containers:
         - name: dashboard
           image: quay.io/argoproj/kubectl-argo-rollouts:latest
@@ -40,3 +41,42 @@ spec:
     - port: 3100
       targetPort: 3100
       nodePort: 30100
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rollouts-dashboard-sa
+  namespace: argo-rollouts
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rollouts-dashboard-role
+rules:
+- apiGroups: ["argoproj.io"]
+  resources: ["rollouts"]
+  verbs: ["get", "list", "watch"]
+
+- apiGroups: [""]
+  resources: ["pods", "services"]
+  verbs: ["get", "list", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rollouts-dashboard-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: rollouts-dashboard-role
+subjects:
+- kind: ServiceAccount
+  name: rollouts-dashboard-sa
+  namespace: argo-rollouts
+
