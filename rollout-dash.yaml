@@ -19,8 +19,11 @@ spec:
           command:
             - kubectl-argo-rollouts
             - dashboard
+            - --host
+            - 0.0.0.0
           ports:
             - containerPort: 3100
+      
 
 ---
 
