@@ -58,11 +58,18 @@ metadata:
   name: rollouts-dashboard-role
 rules:
 - apiGroups: ["argoproj.io"]
-  resources: ["rollouts"]
+  resources:
+    - rollouts
+    - analysisruns
+    - experiments
   verbs: ["get", "list", "watch"]
 
 - apiGroups: [""]
-  resources: ["pods", "services"]
+  resources:
+    - pods
+    - services
+    - namespaces
+    - replicasets
   verbs: ["get", "list", "watch"]
 
 ---
