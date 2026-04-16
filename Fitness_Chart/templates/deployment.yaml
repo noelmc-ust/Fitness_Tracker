@@ -11,6 +11,7 @@ spec:
       activeService: fitness-active
       previewService: fitness-preview
       autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30
 
   selector:
     matchLabels:
@@ -74,6 +75,8 @@ metadata:
   name: fitness-active
   namespace: {{ .Values.namespace }}
 spec:
+  selector:
+    app: fitness-tracker-app
   ports:
     - port: 80
       targetPort: 5000
@@ -86,6 +89,8 @@ metadata:
   name: fitness-preview
   namespace: {{ .Values.namespace }}
 spec:
+  selector:
+    app: fitness-tracker-app
   ports:
     - port: 80
       targetPort: 5000
