@@ -1,8 +1,15 @@
 FROM node:18-alpine
+
 WORKDIR /app
-COPY server/package*.json ./
-RUN npm install --omit=dev
-COPY server/ .
-COPY public/ ./public/
+
+COPY package*.json ./
+COPY server/package*.json ./server/
+
+RUN npm install --omit=dev && \
+    cd server && npm install --omit=dev
+
+COPY . .
+
 EXPOSE 5000
-CMD ["node", "app.js"]
+
+CMD ["npm", "start"]
