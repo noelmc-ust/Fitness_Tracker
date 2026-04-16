@@ -92,6 +92,11 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || '0.0.0.0';
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'pages', 'index.html'));
+});
+
 app.listen(PORT, HOST, () => {
   logger.info('Server started successfully', {
     host: HOST,

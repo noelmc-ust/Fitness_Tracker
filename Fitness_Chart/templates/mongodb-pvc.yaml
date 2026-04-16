@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+  namespace: fitness-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: nfs-csi-fitness 
+  resources:
+    requests:
+      storage: 2Gi

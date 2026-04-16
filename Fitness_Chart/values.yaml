@@ -1,0 +1,38 @@
+# Global settings
+namespace: fitness-app
+
+
+app:
+  replicaCount: 4
+  image:
+    repository: nmc9812/fitness-app
+    tag: latest
+    pullPolicy: Always
+  service:
+    type: NodePort
+    port: 80
+    targetPort: 5000
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+
+mongodb:
+  replicaCount: 1
+  image: mongo:7-jammy
+  pvcName: mongo-pvc
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+
+referenceGrant:
+  fromNamespace: noel-ns
